@@ -16,5 +16,5 @@ spring:
 
 logging:
   level:
-    org.hibernate.SQL: debug
-# hibernate에서 생성하는 모든 sql이 debug에서 보임
+    org.hibernate.SQL: debug # hibernate에서 생성하는 모든 sql이 debug에서 보임
+    org.hibernate.type: trace # 파라미터에 어떤값이 들어갔는지 확인할 수 있다.
