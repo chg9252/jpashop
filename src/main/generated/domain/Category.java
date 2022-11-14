@@ -1,12 +1,14 @@
-package jpabook.jpashop.domain;
+package domain;
 
-import jpabook.jpashop.domain.item.Item;
+import domain.item.Item;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import static javax.persistence.FetchType.*;
 
 @Entity
 @Getter @Setter
@@ -28,13 +30,17 @@ public class Category {
     // 때문에 다대 다 관계를풀어낼 수 있도록 중간에 연결할 수 있는 테이블을 넣어주는 것이다.
     // 하지만 실무에서는 확장성이 너무 낮기 때문에 거의 사용하지 않는다.
 
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "parent_id")
     private Category parent;
 
     @OneToMany(mappedBy = "parent")
     private List<Category> child = new ArrayList<>();
 
-
+    //==연관관계 메서드==//
+    public void addChildCategory(Category child) {
+        this.child.add(child);
+        child.setParent(this);
+    }
 
 }

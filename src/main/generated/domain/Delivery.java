@@ -1,9 +1,11 @@
-package jpabook.jpashop.domain;
+package domain;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+
+import static javax.persistence.FetchType.*;
 
 @Entity
 @Getter @Setter
@@ -13,7 +15,7 @@ public class Delivery {
     @Column(name= "delivery_id")
     private Long id;
 
-    @OneToOne(mappedBy = "delivery")
+    @OneToOne(mappedBy = "delivery", fetch = LAZY) //  OneToOne 도 기본이 즉시 로딩이므로 지연로딩으로 바꿔준것.
     private Order order;
 
     @Embedded
