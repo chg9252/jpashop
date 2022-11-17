@@ -1,6 +1,7 @@
-package jpabook.jpashop.domain.item;
+package jpabook.jpashop.item;
 
 import jpabook.jpashop.domain.Category;
+import jpabook.jpashop.exception.NotEnoughException;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,6 +28,23 @@ public abstract class Item {
     // Category 엔티티와 Item 엔티티 간이 다대다 관계이다.
     @ManyToMany(mappedBy="items")
     private List<Category> categories = new ArrayList<>();
+
+    // 비스니스 로직 //
+    /**
+     * stock 증가
+     */
+    public void addStock(int quantity){
+        this.stockQuantity += quantity;
+    }
+    /**
+     * stock 감소
+     */
+    public void removeStock(int quantity) {
+        int restStock = this.stockQuantity = quantity;
+        if (restStock < 0) {
+            throw new NotEnoughException("need more stock");
+        }
+    }
 
 
 }
