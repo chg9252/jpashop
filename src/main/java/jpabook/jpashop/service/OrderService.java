@@ -4,15 +4,13 @@ import jpabook.jpashop.domain.Delivery;
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.domain.Order;
 import jpabook.jpashop.domain.OrderItem;
-import jpabook.jpashop.item.Item;
+import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.repository.ItemRepository;
 import jpabook.jpashop.repository.MemberRepository;
 import jpabook.jpashop.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -32,7 +30,7 @@ public class OrderService {
         // member와 item의 ID로 각각 Repository 에서 조회.
 
         Member member = memberRepository.findOne(memberId);
-        Item item = itemRepository.findOne(memberId);
+        Item item = itemRepository.findOne(itemId);
 
         // 배송정보 생성
         // 배송정보는 Delivery 생성자 생성    member의 주소를 delivery Address에 세팅.
@@ -42,10 +40,6 @@ public class OrderService {
 
         // 주문상품 생성
         OrderItem orderItem = OrderItem.createOrderItem(item, item.getPrice(), count);
-
-        OrderItem orderItem1 = new OrderItem();
-        orderItem1.setCount();
-
 
         // 주문 생성
         Order order = Order.createOrder(member, delivery, orderItem);
