@@ -62,12 +62,12 @@ public class MemberService {
     }
 
     // 전체 회원찾기
-    private List<Member> findMembers(){
+    public List<Member> findMembers(){
         return memberRepository.findAll();
     }
 
     // 회원 한명찾기
-    private Member findOne(Long memberID){
+    public Member findOne(Long memberID){
         return memberRepository.findOne(memberID);
     }
 
