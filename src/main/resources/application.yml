@@ -1,9 +1,21 @@
+#spring:
+#  datasource:
+#    url: jdbc:h2:tcp://localhost/~/jpashop;
+#    username: sa
+#    password:
+#    driver-class-name: org.h2.Driver
+# 수정일 2022.11.30 mysql변환
+
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/jpashop;
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+    username: root
+    password: Hangeul0223!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/GyerimWestValley
+
+#    hikari:
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#      url: jdbc:mysql://localhost:3306/GyerimWestValley?serverTimezone=UTC
 
   jpa:
     hibernate:
